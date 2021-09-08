@@ -69,10 +69,45 @@
             </v-btn>
 
             <v-spacer />
-            <v-btn icon @click="show = 'search'">
-              <v-icon>mdi-magnify</v-icon>
-            </v-btn>
 
+            <v-dialog
+              v-model="searchDialog"
+              width="500"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  dark
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-icon>mdi-magnify</v-icon>
+                </v-btn>
+              </template>
+
+              <v-card>
+                <v-card-title class="text-h5 grey lighten-2">
+                  Privacy Policy
+                </v-card-title>
+
+                <v-card-text>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </v-card-text>
+
+                <v-divider />
+
+                <v-card-actions>
+                  <v-spacer />
+                  <v-btn
+                    color="#00CCCC"
+                    text
+                    @click="searchDialog = false"
+                  >
+                    I accept
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
             <v-spacer />
 
             <v-btn icon to="/test">
@@ -206,6 +241,7 @@ export default {
   data: () => {
     return {
       // eslint-disable-next-line no-undef
+      searchDialog: false,
       postDialog: false,
       search: false,
       post: false,

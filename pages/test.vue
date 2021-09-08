@@ -1,5 +1,6 @@
 <template>
-  <h1>test</h1>
+  <v-app>
+  </v-app>
 </template>
 
 <script>
