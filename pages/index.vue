@@ -63,21 +63,136 @@
         <footer>
           <v-footer color="#00CCCC" dark app max-width="1263px">
             <v-spacer />
+
             <v-btn icon @click="search != search">
               <v-icon>mdi-home</v-icon>
             </v-btn>
+
             <v-spacer />
             <v-btn icon @click="show = 'search'">
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
+
             <v-spacer />
-            <v-btn icon>
+
+            <v-btn icon to="/test">
               <v-icon>mdi-reload</v-icon>
             </v-btn>
+
             <v-spacer />
-            <v-btn icon>
-              <v-icon>mdi-pencil-plus</v-icon>
-            </v-btn>
+
+            <v-row justify="center">
+              <v-dialog
+                v-model="postDialog"
+                persistent
+                max-width="600px"
+              >
+                <template #activator="{ on, attrs }">
+                  <v-btn
+                    icon
+                    dark
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <v-icon>mdi-pencil-plus</v-icon>
+                  </v-btn>
+                </template>
+                <v-card>
+                  <v-card-actions>
+                    <v-spacer />
+                    <v-btn
+                      color="blue darken-1"
+                      text
+                      @click="postDialog = false"
+                    >
+                      Close
+                    </v-btn>
+                    <v-btn
+                      color="blue darken-1"
+                      text
+                      @click="postDialog = false"
+                    >
+                      Save
+                    </v-btn>
+                  </v-card-actions>
+                  <v-card-title>
+                    <span class="text-h5">User Profile</span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container>
+                      <v-row>
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          md="4"
+                        >
+                          <v-text-field
+                            label="Legal first name*"
+                            required
+                          />
+                        </v-col>
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          md="4"
+                        >
+                          <v-text-field
+                            label="Legal middle name"
+                            hint="example of helper text only on focus"
+                          />
+                        </v-col>
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          md="4"
+                        >
+                          <v-text-field
+                            label="Legal last name*"
+                            hint="example of persistent helper text"
+                            persistent-hint
+                            required
+                          />
+                        </v-col>
+                        <v-col cols="12">
+                          <v-text-field
+                            label="Email*"
+                            required
+                          />
+                        </v-col>
+                        <v-col cols="12">
+                          <v-text-field
+                            label="Password*"
+                            type="password"
+                            required
+                          />
+                        </v-col>
+                        <v-col
+                          cols="12"
+                          sm="6"
+                        >
+                          <v-select
+                            :items="['0-17', '18-29', '30-54', '54+']"
+                            label="Age*"
+                            required
+                          />
+                        </v-col>
+                        <v-col
+                          cols="12"
+                          sm="6"
+                        >
+                          <v-autocomplete
+                            :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
+                            label="Interests"
+                            multiple
+                          />
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                    <small>*indicates required field</small>
+                  </v-card-text>
+                </v-card>
+              </v-dialog>
+            </v-row>
             <v-spacer />
           </v-footer>
         </footer>
