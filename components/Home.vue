@@ -57,8 +57,10 @@ export default {
 <style>
 .home ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .home ul li{
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 </style>
