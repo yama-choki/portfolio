@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section id="index">
     <v-app>
       <div>
         <header>
@@ -10,8 +10,8 @@
             app
           >
             <v-toolbar-title>
-              <v-icon>mdi-feather</v-icon>
-              <span>Port Folio</span>
+              <v-icon>mdi-home</v-icon>
+              <span>Port Folio Forum</span>
             </v-toolbar-title>
             <v-spacer />
             <v-btn icon>
@@ -55,6 +55,7 @@
         </nav>
 
         <main>
+          <div id="top" />
           <v-expand-transition>
             <Home />
           </v-expand-transition>
@@ -64,7 +65,7 @@
           <v-footer color="#00CCCC" dark app max-width="1263px">
             <v-spacer />
 
-            <v-btn icon @click="search != search">
+            <v-btn icon to="#top">
               <v-icon>mdi-home</v-icon>
             </v-btn>
 
@@ -74,7 +75,7 @@
               v-model="searchDialog"
               width="500"
             >
-              <template v-slot:activator="{ on, attrs }">
+              <template #activator="{ on, attrs }">
                 <v-btn
                   icon
                   dark
@@ -116,118 +117,117 @@
 
             <v-spacer />
 
-            <v-row justify="center">
-              <v-dialog
-                v-model="postDialog"
-                persistent
-                max-width="600px"
-              >
-                <template #activator="{ on, attrs }">
+            <v-dialog
+              v-model="postDialog"
+              persistent
+              max-width="600px"
+            >
+              <template #activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  dark
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-icon>mdi-pencil-plus</v-icon>
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-actions>
+                  <v-spacer />
                   <v-btn
-                    icon
-                    dark
-                    v-bind="attrs"
-                    v-on="on"
+                    color="blue darken-1"
+                    text
+                    @click="postDialog = false"
                   >
-                    <v-icon>mdi-pencil-plus</v-icon>
+                    Close
                   </v-btn>
-                </template>
-                <v-card>
-                  <v-card-actions>
-                    <v-spacer />
-                    <v-btn
-                      color="blue darken-1"
-                      text
-                      @click="postDialog = false"
-                    >
-                      Close
-                    </v-btn>
-                    <v-btn
-                      color="blue darken-1"
-                      text
-                      @click="postDialog = false"
-                    >
-                      Save
-                    </v-btn>
-                  </v-card-actions>
-                  <v-card-title>
-                    <span class="text-h5">User Profile</span>
-                  </v-card-title>
-                  <v-card-text>
-                    <v-container>
-                      <v-row>
-                        <v-col
-                          cols="12"
-                          sm="6"
-                          md="4"
-                        >
-                          <v-text-field
-                            label="Legal first name*"
-                            required
-                          />
-                        </v-col>
-                        <v-col
-                          cols="12"
-                          sm="6"
-                          md="4"
-                        >
-                          <v-text-field
-                            label="Legal middle name"
-                            hint="example of helper text only on focus"
-                          />
-                        </v-col>
-                        <v-col
-                          cols="12"
-                          sm="6"
-                          md="4"
-                        >
-                          <v-text-field
-                            label="Legal last name*"
-                            hint="example of persistent helper text"
-                            persistent-hint
-                            required
-                          />
-                        </v-col>
-                        <v-col cols="12">
-                          <v-text-field
-                            label="Email*"
-                            required
-                          />
-                        </v-col>
-                        <v-col cols="12">
-                          <v-text-field
-                            label="Password*"
-                            type="password"
-                            required
-                          />
-                        </v-col>
-                        <v-col
-                          cols="12"
-                          sm="6"
-                        >
-                          <v-select
-                            :items="['0-17', '18-29', '30-54', '54+']"
-                            label="Age*"
-                            required
-                          />
-                        </v-col>
-                        <v-col
-                          cols="12"
-                          sm="6"
-                        >
-                          <v-autocomplete
-                            :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                            label="Interests"
-                            multiple
-                          />
-                        </v-col>
-                      </v-row>
-                    </v-container>
-                    <small>*indicates required field</small>
-                  </v-card-text>
-                </v-card>
-              </v-dialog>
-            </v-row>
+                  <v-btn
+                    color="blue darken-1"
+                    text
+                    @click="postDialog = false"
+                  >
+                    Save
+                  </v-btn>
+                </v-card-actions>
+                <v-card-title>
+                  <span class="text-h5">User Profile</span>
+                </v-card-title>
+                <v-card-text>
+                  <v-container>
+                    <v-row>
+                      <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                      >
+                        <v-text-field
+                          label="Legal first name*"
+                          required
+                        />
+                      </v-col>
+                      <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                      >
+                        <v-text-field
+                          label="Legal middle name"
+                          hint="example of helper text only on focus"
+                        />
+                      </v-col>
+                      <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                      >
+                        <v-text-field
+                          label="Legal last name*"
+                          hint="example of persistent helper text"
+                          persistent-hint
+                          required
+                        />
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          label="Email*"
+                          required
+                        />
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          label="Password*"
+                          type="password"
+                          required
+                        />
+                      </v-col>
+                      <v-col
+                        cols="12"
+                        sm="6"
+                      >
+                        <v-select
+                          :items="['0-17', '18-29', '30-54', '54+']"
+                          label="Age*"
+                          required
+                        />
+                      </v-col>
+                      <v-col
+                        cols="12"
+                        sm="6"
+                      >
+                        <v-autocomplete
+                          :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
+                          label="Interests"
+                          multiple
+                        />
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                  <small>*indicates required field</small>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
+
             <v-spacer />
           </v-footer>
         </footer>
@@ -259,6 +259,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#index{
+  max-width: 1263px;
+  border: 1px solid rgb(200, 200, 200);
+  margin: 0 auto;
+}
 
 header{
   margin: 0 auto;
@@ -270,6 +275,5 @@ footer{
 
 main {
   margin-top: 64px;
-  align-content: center;
 }
 </style>
