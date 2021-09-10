@@ -243,15 +243,13 @@ export default {
       // eslint-disable-next-line no-undef
       searchDialog: false,
       postDialog: false,
-      search: false,
-      post: false,
       drawer: null,
       items: [
-        { title: 'Home', icon: 'mdi-home', to: '/' },
-        { title: 'Notifications', icon: 'mdi-bell-outline', to: '/' },
-        { title: 'Messages', icon: 'mdi-email-outline', to: '/' },
-        { title: 'Profile', icon: 'mdi-account', to: '/profile' },
-        { title: 'Logout', icon: 'mdi-logout', to: '/' }
+        { title: 'ホーム', icon: 'mdi-home', to: '/' },
+        { title: '通知', icon: 'mdi-bell-outline', to: '/NotificationsPage' },
+        { title: 'メッセージ', icon: 'mdi-email-outline', to: '/messagePage' },
+        { title: 'プロフィール', icon: 'mdi-account', to: '/profilePage' },
+        { title: 'ログアウト', icon: 'mdi-logout', to: '/logoutPage' }
       ]
     }
   }
@@ -274,6 +272,6 @@ footer{
 }
 
 main {
-  margin-top: 64px;
+  margin: 64px 0px 48px 0px;
 }
 </style>

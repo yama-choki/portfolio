@@ -24,9 +24,9 @@
             <template #extension>
               <v-tabs left>
                 <v-spacer />
-                <v-tab>プロフィール</v-tab>
+                <v-tab @click="show = 'profile'">プロフィール</v-tab>
                 <v-spacer />
-                <v-tab>ブックマーク</v-tab>
+                <v-tab @click="show = 'bookmark'">ブックマーク</v-tab>
                 <v-spacer />
               </v-tabs>
             </template>
@@ -70,7 +70,12 @@
       </nav>
 
       <v-main>
-        <Bookmark />
+        <v-scroll-x-transition>
+          <Test v-show="show === 'profile'" />
+        </v-scroll-x-transition>
+        <v-scroll-x-reverse-transition>
+          <Bookmark v-show="show === 'bookmark'" />
+        </v-scroll-x-reverse-transition>
       </v-main>
     </v-app>
   </section>
@@ -80,13 +85,14 @@
 export default {
   data () {
     return {
+      show: 'profile',
       drawer: null,
       items: [
-        { title: 'Home', icon: 'mdi-home', to: '/' },
-        { title: 'Notifications', icon: 'mdi-bell-outline', to: '/' },
-        { title: 'Messages', icon: 'mdi-email-outline', to: '/' },
-        { title: 'Profile', icon: 'mdi-account', to: '/profile' },
-        { title: 'Logout', icon: 'mdi-logout', to: '/' }
+        { title: 'ホーム', icon: 'mdi-home', to: '/' },
+        { title: '通知', icon: 'mdi-bell-outline', to: '/NotificationsPage' },
+        { title: 'メッセージ', icon: 'mdi-email-outline', to: '/messagePage' },
+        { title: 'プロフィール', icon: 'mdi-account', to: '/profilePage' },
+        { title: 'ログアウト', icon: 'mdi-logout', to: '/logoutPage' }
       ]
     }
   }
