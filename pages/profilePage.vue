@@ -11,8 +11,8 @@
             max-width="1263px"
           >
             <v-toolbar-title>
-              <v-icon>mdi-account-circle</v-icon>
               <span>Port Folio Forum</span>
+              <v-icon>mdi-account</v-icon>
             </v-toolbar-title>
 
             <v-spacer />
@@ -24,9 +24,13 @@
             <template #extension>
               <v-tabs left>
                 <v-spacer />
-                <v-tab @click="show = 'profile'">プロフィール</v-tab>
+                <v-tab @click="show = 'profile'">
+                  プロフィール
+                </v-tab>
                 <v-spacer />
-                <v-tab @click="show = 'bookmark'">ブックマーク</v-tab>
+                <v-tab @click="show = 'bookmark'">
+                  ブックマーク
+                </v-tab>
                 <v-spacer />
               </v-tabs>
             </template>

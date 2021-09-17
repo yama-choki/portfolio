@@ -10,8 +10,8 @@
             app
           >
             <v-toolbar-title>
-              <v-icon>mdi-home</v-icon>
               <span>Port Folio Forum</span>
+              <v-icon>mdi-email</v-icon>
             </v-toolbar-title>
             <v-spacer />
             <v-btn icon>

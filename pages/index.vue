@@ -10,8 +10,8 @@
             app
           >
             <v-toolbar-title>
-              <v-icon>mdi-home</v-icon>
               <span>Port Folio Forum</span>
+              <v-icon>mdi-home</v-icon>
             </v-toolbar-title>
             <v-spacer />
             <v-btn icon>
@@ -140,90 +140,65 @@
                     text
                     @click="postDialog = false"
                   >
-                    Close
+                    キャンセル
                   </v-btn>
                   <v-btn
                     color="blue darken-1"
                     text
                     @click="postDialog = false"
                   >
-                    Save
+                    投稿する
                   </v-btn>
                 </v-card-actions>
-                <v-card-title>
-                  <span class="text-h5">User Profile</span>
-                </v-card-title>
                 <v-card-text>
                   <v-container>
                     <v-row>
                       <v-col
                         cols="12"
-                        sm="6"
-                        md="4"
+                        sm="12"
+                        md="12"
                       >
-                        <v-text-field
-                          label="Legal first name*"
+                        <v-textarea
+                          label="ポートフォリオの説明"
                           required
+                          counter="200"
                         />
                       </v-col>
                       <v-col
                         cols="12"
-                        sm="6"
-                        md="4"
+                        sm="12"
+                        md="12"
                       >
                         <v-text-field
-                          label="Legal middle name"
-                          hint="example of helper text only on focus"
+                          label="ポートフォリオ"
+                          hint="URLを添付してください"
+                          persistent-hint
                         />
                       </v-col>
                       <v-col
                         cols="12"
-                        sm="6"
-                        md="4"
+                        sm="12"
+                        md="12"
                       >
                         <v-text-field
-                          label="Legal last name*"
-                          hint="example of persistent helper text"
+                          label="SNSアカウント"
+                          hint="URLを添付してください"
                           persistent-hint
                           required
                         />
                       </v-col>
-                      <v-col cols="12">
-                        <v-text-field
-                          label="Email*"
-                          required
-                        />
-                      </v-col>
-                      <v-col cols="12">
-                        <v-text-field
-                          label="Password*"
-                          type="password"
-                          required
-                        />
-                      </v-col>
                       <v-col
                         cols="12"
-                        sm="6"
+                        sm="12"
                       >
                         <v-select
-                          :items="['0-17', '18-29', '30-54', '54+']"
-                          label="Age*"
+                          :items="['Webアプリ', 'Webデザイン', 'イラスト', 'その他']"
+                          label="ポートフォリオの種類"
                           required
-                        />
-                      </v-col>
-                      <v-col
-                        cols="12"
-                        sm="6"
-                      >
-                        <v-autocomplete
-                          :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                          label="Interests"
-                          multiple
                         />
                       </v-col>
                     </v-row>
                   </v-container>
-                  <small>*indicates required field</small>
                 </v-card-text>
               </v-card>
             </v-dialog>
@@ -250,7 +225,13 @@ export default {
         { title: 'メッセージ', icon: 'mdi-email-outline', to: '/messagePage' },
         { title: 'プロフィール', icon: 'mdi-account', to: '/profilePage' },
         { title: 'ログアウト', icon: 'mdi-logout', to: '/logoutPage' }
-      ]
+      ],
+      post: {
+        text: '',
+        portfolioUrl: '',
+        snsAccount: '',
+        kindOfPortfolio: ''
+      }
     }
   }
 }
