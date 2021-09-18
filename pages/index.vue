@@ -46,7 +46,58 @@
         <main>
           <div id="top" />
           <v-expand-transition>
-            <Home />
+            <div class="home">
+              <ul>
+                <!-- v-for=""をつけて投稿の数表示するように書き換える-->
+                <li v-for="post in posts" :key="post.id" class="port-folio">
+                  <v-card
+                    class="mx-auto"
+                    color="#00CCCC40"
+                    max-width="600px"
+                    to="/"
+                  >
+                    <v-card-actions>
+                      <v-list-item class="grow" to="/profile">
+                        <v-list-item-avatar color="grey darken-3">
+                          <v-img
+                            class="elevation-6"
+                            alt=""
+                            src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+                          />
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                          <v-list-item-title>Evan You</v-list-item-title>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-card-actions>
+                    <v-card-text class="pa-0">
+                      {{ post.text }}
+                    </v-card-text>
+                    <v-card-text class="pa-0">
+                      <a href="post.portfolioUrl">リンク先へ</a>
+                    </v-card-text>
+                    <v-card-text class="pa-0">
+                      <a href="post.snsAccount">作成者のSNS</a>
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-spacer />
+                      <v-btn icon>
+                        <v-icon>mdi-comment-outline</v-icon>
+                      </v-btn>
+                      <v-spacer />
+                      <v-btn icon>
+                        <v-icon>mdi-heart-outline</v-icon>
+                      </v-btn>
+                      <v-spacer />
+                      <v-btn icon>
+                        <v-icon>mdi-bookmark-outline</v-icon>
+                      </v-btn>
+                      <v-spacer />
+                    </v-card-actions>
+                  </v-card>
+                </li>
+              </ul>
+            </div>
           </v-expand-transition>
         </main>
 
@@ -233,6 +284,14 @@ export default {
         bookmark: 0
       }
     }
+  },
+  computed: {
+    posts () {
+      return this.$store.getters['home/sortedPosts']
+    }
+  },
+  created () {
+    this.$store.dispatch('home/init')
   },
   methods: {
     add () {
