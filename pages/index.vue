@@ -14,45 +14,34 @@
               <v-icon>mdi-home</v-icon>
             </v-toolbar-title>
             <v-spacer />
-            <v-btn icon>
-              <v-app-bar-nav-icon @click="drawer = !drawer" />
-            </v-btn>
+            <v-menu transition="scroll-y-transition">
+              <template #activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-app-bar-nav-icon />
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="item in items"
+                  :key="item.name"
+                  link
+                >
+                  <v-list-item-icon>
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </v-list-item-icon>
+
+                  <v-list-item-content>
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </v-app-bar>
         </header>
-        <nav>
-          <v-navigation-drawer v-model="drawer" app>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title class="title">
-                  <v-icon>mdi-account-circle-outline</v-icon>
-                  Account Name
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-
-            <v-divider />
-
-            <v-list
-              dense
-              nav
-            >
-              <v-list-item
-                v-for="item in items"
-                :key="item.title"
-                link
-                :to="item.to"
-              >
-                <v-list-item-icon>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </v-list-item-icon>
-
-                <v-list-item-content>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-navigation-drawer>
-        </nav>
 
         <main>
           <div id="top" />
@@ -133,76 +122,83 @@
                 </v-btn>
               </template>
               <v-card>
-                <v-card-actions>
-                  <v-spacer />
-                  <v-btn
-                    color="blue darken-1"
-                    text
-                    @click="postDialog = false"
-                  >
-                    キャンセル
-                  </v-btn>
-                  <v-btn
-                    color="blue darken-1"
-                    text
-                    @click="postDialog = false"
-                  >
-                    投稿する
-                  </v-btn>
-                </v-card-actions>
-                <v-card-text>
-                  <v-container>
-                    <v-row>
-                      <v-col
-                        cols="12"
-                        sm="12"
-                        md="12"
+                <form>
+                  <v-card-actions>
+                    <v-spacer />
+                    <v-btn
+                      color="blue darken-1"
+                      text
+                      @click="postDialog = false"
+                    >
+                      キャンセル
+                    </v-btn>
+                    <button>
+                      <v-btn
+                        color="blue darken-1"
+                        text
+                        @click="postDialog = false, add()"
                       >
-                        <v-textarea
-                          label="ポートフォリオの説明"
-                          required
-                          counter="200"
-                        />
-                      </v-col>
-                      <v-col
-                        cols="12"
-                        sm="12"
-                        md="12"
-                      >
-                        <v-text-field
-                          label="ポートフォリオ"
-                          hint="URLを添付してください"
-                          persistent-hint
-                        />
-                      </v-col>
-                      <v-col
-                        cols="12"
-                        sm="12"
-                        md="12"
-                      >
-                        <v-text-field
-                          label="SNSアカウント"
-                          hint="URLを添付してください"
-                          persistent-hint
-                          required
-                        />
-                      </v-col>
-                      <v-col
-                        cols="12"
-                        sm="12"
-                      >
-                        <v-select
-                          :items="['Webアプリ', 'Webデザイン', 'イラスト', 'その他']"
-                          label="ポートフォリオの種類"
-                          required
-                        />
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-card-text>
+                        投稿する
+                      </v-btn>
+                    </button>
+                  </v-card-actions>
+                  <v-card-text>
+                    <v-container>
+                      <v-row>
+                        <v-col
+                          cols="12"
+                          sm="12"
+                          md="12"
+                        >
+                          <v-textarea
+                            v-model="post.text"
+                            label="ポートフォリオの説明"
+                            required
+                            counter="200"
+                          />
+                        </v-col>
+                        <v-col
+                          cols="12"
+                          sm="12"
+                          md="12"
+                        >
+                          <v-text-field
+                            v-model="post.portfolioUrl"
+                            label="ポートフォリオ"
+                            hint="URLを添付してください"
+                            persistent-hint
+                          />
+                        </v-col>
+                        <v-col
+                          cols="12"
+                          sm="12"
+                          md="12"
+                        >
+                          <v-text-field
+                            v-model="post.snsAccount"
+                            label="SNSアカウント"
+                            hint="URLを添付してください"
+                            persistent-hint
+                            required
+                          />
+                        </v-col>
+                        <v-col
+                          cols="12"
+                          sm="12"
+                        >
+                          <v-select
+                            v-model="post.kindOfPortfolio"
+                            :items="['Webアプリ', 'Webデザイン','動画編集', 'イラスト', 'その他']"
+                            label="ポートフォリオの種類"
+                            required
+                          />
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card-text>
+                </form>
               </v-card>
             </v-dialog>
-
             <v-spacer />
           </v-footer>
         </footer>
@@ -218,7 +214,6 @@ export default {
       // eslint-disable-next-line no-undef
       searchDialog: false,
       postDialog: false,
-      drawer: null,
       items: [
         { title: 'ホーム', icon: 'mdi-home', to: '/' },
         { title: '通知', icon: 'mdi-bell-outline', to: '/NotificationsPage' },
@@ -230,8 +225,23 @@ export default {
         text: '',
         portfolioUrl: '',
         snsAccount: '',
-        kindOfPortfolio: ''
+        kindOfPortfolio: '',
+        created: '',
+        user: '',
+        comments: [],
+        likes: 0,
+        bookmark: 0
       }
+    }
+  },
+  methods: {
+    add () {
+      this.$store.dispatch('home/add', this.post)
+      this.post.text = ''
+      this.post.portfolioUrl = ''
+      this.post.snsAccount = ''
+      this.post.kindOfPortfolio = ''
+      // eslint-disable-next-line no-console
     }
   }
 }
