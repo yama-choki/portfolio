@@ -13,7 +13,9 @@
               <span>Port Folio Forum</span>
               <v-icon>mdi-home</v-icon>
             </v-toolbar-title>
+
             <v-spacer />
+
             <v-menu transition="scroll-y-transition">
               <template #activator="{ on, attrs }">
                 <v-btn
@@ -28,7 +30,7 @@
                 <v-list-item
                   v-for="item in items"
                   :key="item.name"
-                  link
+                  :to="item.to"
                 >
                   <v-list-item-icon>
                     <v-icon>{{ item.icon }}</v-icon>
@@ -54,7 +56,6 @@
                     class="mx-auto"
                     color="#00CCCC40"
                     max-width="600px"
-                    to="/"
                   >
                     <v-card-actions>
                       <v-list-item class="grow" to="/profile">

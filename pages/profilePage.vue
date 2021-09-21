@@ -17,9 +17,32 @@
 
             <v-spacer />
 
-            <v-btn icon>
-              <v-app-bar-nav-icon @click="drawer = !drawer" />
-            </v-btn>
+            <v-menu transition="scroll-y-transition">
+              <template #activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-app-bar-nav-icon />
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="item in items"
+                  :key="item.name"
+                  :to="item.to"
+                >
+                  <v-list-item-icon>
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </v-list-item-icon>
+
+                  <v-list-item-content>
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-menu>
 
             <template #extension>
               <v-tabs left>
@@ -38,41 +61,6 @@
         </v-card>
       </header>
 
-      <nav>
-        <v-navigation-drawer v-model="drawer" app>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title class="title">
-                <v-icon>mdi-account-circle-outline</v-icon>
-                Account Name
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-divider />
-
-          <v-list
-            dense
-            nav
-          >
-            <v-list-item
-              v-for="item in items"
-              :key="item.title"
-              link
-              :to="item.to"
-            >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-
-              <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
-      </nav>
-
       <v-main>
         <v-scroll-x-transition>
           <Test v-show="show === 'profile'" />
@@ -90,7 +78,6 @@ export default {
   data () {
     return {
       show: 'profile',
-      drawer: null,
       items: [
         { title: 'ホーム', icon: 'mdi-home', to: '/' },
         { title: '通知', icon: 'mdi-bell-outline', to: '/NotificationsPage' },

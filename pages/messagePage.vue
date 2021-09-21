@@ -14,45 +14,34 @@
               <v-icon>mdi-email</v-icon>
             </v-toolbar-title>
             <v-spacer />
-            <v-btn icon>
-              <v-app-bar-nav-icon @click="drawer = !drawer" />
-            </v-btn>
+            <v-menu transition="scroll-y-transition">
+              <template #activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-app-bar-nav-icon />
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="item in items"
+                  :key="item.name"
+                  :to="item.to"
+                >
+                  <v-list-item-icon>
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </v-list-item-icon>
+
+                  <v-list-item-content>
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </v-app-bar>
         </header>
-        <nav>
-          <v-navigation-drawer v-model="drawer" app>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title class="title">
-                  <v-icon>mdi-account-circle-outline</v-icon>
-                  Account Name
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-
-            <v-divider />
-
-            <v-list
-              dense
-              nav
-            >
-              <v-list-item
-                v-for="item in items"
-                :key="item.title"
-                link
-                :to="item.to"
-              >
-                <v-list-item-icon>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </v-list-item-icon>
-
-                <v-list-item-content>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-navigation-drawer>
-        </nav>
 
         <main>
           <div id="top" />
@@ -69,8 +58,6 @@
 export default {
   data: () => {
     return {
-      // eslint-disable-next-line no-undef
-      drawer: null,
       items: [
         { title: 'ホーム', icon: 'mdi-home', to: '/' },
         { title: '通知', icon: 'mdi-bell-outline', to: '/NotificationsPage' },
