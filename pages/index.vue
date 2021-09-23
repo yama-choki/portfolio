@@ -1,57 +1,15 @@
+/* eslint-disable vue/no-template-shadow */
 <template>
   <section id="index">
     <v-app>
       <div>
-        <header>
-          <v-app-bar
-            color="#00CCCC"
-            dark
-            max-width="1263px"
-            app
-          >
-            <v-toolbar-title>
-              <span>Port Folio Forum</span>
-              <v-icon>mdi-home</v-icon>
-            </v-toolbar-title>
-
-            <v-spacer />
-
-            <v-menu transition="scroll-y-transition">
-              <template #activator="{ on, attrs }">
-                <v-btn
-                  icon
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  <v-app-bar-nav-icon />
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item
-                  v-for="item in items"
-                  :key="item.name"
-                  :to="item.to"
-                >
-                  <v-list-item-icon>
-                    <v-icon>{{ item.icon }}</v-icon>
-                  </v-list-item-icon>
-
-                  <v-list-item-content>
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </v-app-bar>
-        </header>
-
+        <Header />
         <main>
           <div id="top" />
           <v-expand-transition>
             <div class="home">
               <ul>
-                <!-- v-for=""をつけて投稿の数表示するように書き換える-->
-                <li v-for="post in posts" :key="post.id" class="port-folio">
+                <li v-for="sortedPost in sortedPosts" :key="sortedPost.id" class="port-folio">
                   <v-card
                     class="mx-auto"
                     color="#00CCCC40"
@@ -266,13 +224,6 @@ export default {
       // eslint-disable-next-line no-undef
       searchDialog: false,
       postDialog: false,
-      items: [
-        { title: 'ホーム', icon: 'mdi-home', to: '/' },
-        { title: '通知', icon: 'mdi-bell-outline', to: '/NotificationsPage' },
-        { title: 'メッセージ', icon: 'mdi-email-outline', to: '/messagePage' },
-        { title: 'プロフィール', icon: 'mdi-account', to: '/profilePage' },
-        { title: 'ログアウト', icon: 'mdi-logout', to: '/logoutPage' }
-      ],
       post: {
         text: '',
         portfolioUrl: '',
@@ -281,13 +232,13 @@ export default {
         created: '',
         user: '',
         comments: [],
-        likes: 0,
-        bookmark: 0
+        likes: { counnt: 0, user: [] },
+        bookmark: { counnt: 0, user: [] }
       }
     }
   },
   computed: {
-    posts () {
+    sortedPosts () {
       return this.$store.getters['home/sortedPosts']
     }
   },
@@ -301,7 +252,6 @@ export default {
       this.post.portfolioUrl = ''
       this.post.snsAccount = ''
       this.post.kindOfPortfolio = ''
-      // eslint-disable-next-line no-console
     }
   }
 }

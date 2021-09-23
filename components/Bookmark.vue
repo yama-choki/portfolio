@@ -20,9 +20,11 @@
                     src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
                   />
                 </v-list-item-avatar>
-                <v-list-item-content>
-                  <v-list-item-title>Evan You</v-list-item-title>
-                </v-list-item-content>
+                <div class="account-name">
+                  <v-list-item-content>
+                    <v-list-item-title>Evan You</v-list-item-title>
+                  </v-list-item-content>
+                </div>
               </v-list-item>
             </v-card-actions>
             <v-card-text class="pa-0">
@@ -64,5 +66,9 @@ export default {
 }
 .home ul li{
   margin-bottom: 18px;
+}
+
+.account-name{
+
 }
 </style>
