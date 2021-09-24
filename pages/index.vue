@@ -3,7 +3,9 @@
   <section id="index">
     <v-app>
       <div>
-        <Header />
+        <header>
+          <Header />
+        </header>
         <main>
           <div id="top" />
           <v-expand-transition>
