@@ -32,13 +32,13 @@
                       </v-list-item>
                     </v-card-actions>
                     <v-card-text class="pa-0">
-                      {{ post.text }}
+                      {{ sortedPost.text }}
                     </v-card-text>
                     <v-card-text class="pa-0">
-                      <a href="post.portfolioUrl">リンク先へ</a>
+                      <a href="sortedPost.portfolioUrl">リンク先へ</a>
                     </v-card-text>
                     <v-card-text class="pa-0">
-                      <a href="post.snsAccount">作成者のSNS</a>
+                      <a href="sortedPost.snsAccount">作成者のSNS</a>
                     </v-card-text>
                     <v-card-actions>
                       <v-spacer />
