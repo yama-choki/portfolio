@@ -51,9 +51,10 @@ export default {
     return {
       items: [
         { title: 'ホーム', icon: 'mdi-home', to: '/' },
-        { title: '通知', icon: 'mdi-bell-outline', to: '/NotificationsPage' },
-        { title: 'プロフィール', icon: 'mdi-account', to: '/profilePage' },
-        { title: 'ログアウト', icon: 'mdi-logout', to: '/logoutPage' }
+        { title: '通知', icon: 'mdi-bell-outline', to: '/Notifications' },
+        { title: 'プロフィール', icon: 'mdi-account', to: '/profile' },
+        { title: 'ログアウト', icon: 'mdi-logout', to: '/logout' },
+        { title: 'ログイン', icon: 'mdi-login', to: '/login' }
       ]
     }
   }

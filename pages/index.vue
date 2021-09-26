@@ -262,7 +262,7 @@ export default {
 <style lang="scss" scoped>
 #index{
   max-width: 1263px;
-  border: 1px solid rgb(200, 200, 200);
+  border: 1px solid rgb(230, 230, 230);
   margin: 0 auto;
 }
 
