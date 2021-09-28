@@ -15,10 +15,26 @@ export const mutations = {
 }
 
 export const actions = {
-  login ({ commit }) {
+  loginGoogle ({ commit }) {
     // eslint-disable-next-line no-console
-    console.log('login action')
+    console.log('Google login action')
     const provider = new firebase.auth.GoogleAuthProvider()
+    firebase.auth().signInWithPopup(provider).then(function (result) {
+      const user = result.user
+      // eslint-disable-next-line no-console
+      console.log('success : ' + user.uid + ' : ' + user.displayName)
+      commit('setUserUid', user.uid)
+      commit('setUserName', user.displayName)
+    }).catch(function (error) {
+      const errorCode = error.code
+      // eslint-disable-next-line no-console
+      console.log('error : ' + errorCode)
+    })
+  },
+  loginTwitter ({ commit }) {
+    // eslint-disable-next-line no-console
+    console.log('Twitter login action')
+    const provider = new firebase.auth.TwitterAuthProvider()
     firebase.auth().signInWithPopup(provider).then(function (result) {
       const user = result.user
       // eslint-disable-next-line no-console
