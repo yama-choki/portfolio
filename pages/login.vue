@@ -27,7 +27,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
 .container {
   margin: 0 auto;
   min-height: 100vh;

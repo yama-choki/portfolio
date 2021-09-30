@@ -1,14 +1,12 @@
 /* eslint-disable vue/require-v-for-key */
 <template>
-  <div class="home">
+  <div class="posts">
     <ul>
-      <!-- v-for=""をつけて投稿の数表示するように書き換える-->
-      <li v-for="post in posts" :key="post.id" class="port-folio">
+      <li v-for="sortedPost in sortedPosts" :key="sortedPost.id">
         <v-card
           class="mx-auto"
           color="#00CCCC40"
           max-width="600px"
-          to="/"
         >
           <v-card-actions>
             <v-list-item class="grow" to="/profile">
@@ -25,13 +23,13 @@
             </v-list-item>
           </v-card-actions>
           <v-card-text class="pa-0">
-            {{ post.text }}
+            {{ sortedPost.text }}
           </v-card-text>
           <v-card-text class="pa-0">
-            {{ post.portfolioUrl }}
+            <a href="sortedPost.portfolioUrl">リンク先へ</a>
           </v-card-text>
           <v-card-text class="pa-0">
-            {{ post.snsAccount }}
+            <a href="sortedPost.snsAccount">作成者のSNS</a>
           </v-card-text>
           <v-card-actions>
             <v-spacer />
@@ -57,9 +55,8 @@
 <script>
 export default {
   computed: {
-    posts () {
-      // return this.$store.state.todos.todos
-      return this.$store.getters['home/sortedTodos']
+    sortedPosts () {
+      return this.$store.getters['home/sortedPosts']
     }
   },
   created () {
@@ -69,12 +66,16 @@ export default {
 </script>
 
 <style>
-.home ul {
+.posts{
+  margin: 0 auto;
+  max-width: 600px;
+}
+.posts ul {
   list-style: none;
   margin: 8px;
   padding: 0;
 }
-.home ul li{
+.posts ul li{
   margin-bottom: 18px;
 }
 </style>
