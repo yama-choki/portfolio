@@ -57,6 +57,23 @@ export const actions = {
       // eslint-disable-next-line no-console
       console.log('error : ' + errorCode)
     })
+  },
+  loginFacebook ({ commit }) {
+    // eslint-disable-next-line no-console
+    console.log('Facebook login action')
+    const provider = new firebase.auth.FacebookAuthProvider()
+    firebase.auth().signInWithPopup(provider).then(function (result) {
+      const user = result.user
+      // eslint-disable-next-line no-console
+      console.log('success : ' + user.uid + ' : ' + user.displayName)
+      console.log(user)
+      commit('setUserUid', user.uid)
+      commit('setUserName', user.displayName)
+    }).catch(function (error) {
+      const errorCode = error.code
+      // eslint-disable-next-line no-console
+      console.log('error : ' + errorCode)
+    })
   }
 }
 
