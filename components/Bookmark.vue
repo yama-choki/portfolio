@@ -67,8 +67,4 @@ export default {
 .home ul li{
   margin-bottom: 18px;
 }
-
-.account-name{
-
-}
 </style>

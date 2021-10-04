@@ -5,7 +5,9 @@ const db = firebase.firestore()
 const postsRef = db.collection('posts')
 
 export const state = () => ({
-  posts: []
+  posts: [],
+  homeShow: 'home',
+  accountShow: 'profile'
 })
 
 export const actions = {
@@ -16,6 +18,15 @@ export const actions = {
     post.created = firebase.firestore.FieldValue.serverTimestamp()
     postsRef.add(post)
   })
+}
+
+export const mutations = {
+  accountPage (state) {
+    state.homeShow = 'account'
+  },
+  homePage (state) {
+    state.homeShow = 'home'
+  }
 }
 
 export const getters = {

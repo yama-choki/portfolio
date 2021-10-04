@@ -2,7 +2,8 @@ import firebase from '~/plugins/firebase'
 
 export const state = () => ({
   userUid: '',
-  userName: ''
+  userName: '',
+  accountShow: 'profile'
 })
 
 export const mutations = {
@@ -11,6 +12,15 @@ export const mutations = {
   },
   setUserName (state, userName) {
     state.userName = userName
+  },
+  profilePage (state) {
+    state.accountShow = 'profile'
+  },
+  likesPage (state) {
+    state.accountShow = 'likes'
+  },
+  commentsPage (state) {
+    state.accountShow = 'comments'
   }
 }
 
@@ -39,6 +49,7 @@ export const actions = {
       const user = result.user
       // eslint-disable-next-line no-console
       console.log('success : ' + user.uid + ' : ' + user.displayName)
+      console.log(user)
       commit('setUserUid', user.uid)
       commit('setUserName', user.displayName)
     }).catch(function (error) {

@@ -4,11 +4,15 @@
     <v-app>
       <div>
         <header>
-          <Header />
+          <Home-header v-show="$store.state.footer.homeShow === 'home'" />
+          <Account-header v-show="$store.state.footer.homeShow === 'account'" />
         </header>
         <main>
           <v-expand-transition>
-            <Posts />
+            <Posts v-show="$store.state.footer.homeShow === 'home'" />
+          </v-expand-transition>
+          <v-expand-transition>
+            <Account v-show="$store.state.footer.homeShow === 'account'" />
           </v-expand-transition>
         </main>
         <footer>
@@ -41,6 +45,6 @@ footer{
 }
 
 main {
-  margin: 64px 0px 48px 0px;
+  margin: 72px 0px 48px 0px;
 }
 </style>

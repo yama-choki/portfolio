@@ -2,13 +2,13 @@
   <v-footer color="#00CCCC" dark app max-width="1263px">
     <v-spacer />
 
-    <v-btn icon @click="'home'">
+    <v-btn icon @click="homePage ()">
       <v-icon>mdi-home</v-icon>
     </v-btn>
 
     <v-spacer />
 
-    <v-btn icon @click="show ==='profile'">
+    <v-btn icon @click="accountPage ()">
       <v-icon>mdi-account</v-icon>
     </v-btn>
 
@@ -153,9 +153,9 @@
 
 <script>
 export default {
+  // eslint-disable-next-line no-undef
   data: () => {
     return {
-      // eslint-disable-next-line no-undef
       searchDialog: false,
       postDialog: false,
       post: {
@@ -173,11 +173,17 @@ export default {
   },
   methods: {
     add () {
-      this.$store.dispatch('home/add', this.post)
+      this.$store.dispatch('footer/add', this.post)
       this.post.text = ''
       this.post.portfolioUrl = ''
       this.post.snsAccount = ''
       this.post.kindOfPortfolio = ''
+    },
+    homePage () {
+      this.$store.commit('footer/homePage')
+    },
+    accountPage () {
+      this.$store.commit('footer/accountPage')
     }
   }
 }

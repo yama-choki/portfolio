@@ -56,11 +56,11 @@
 export default {
   computed: {
     sortedPosts () {
-      return this.$store.getters['home/sortedPosts']
+      return this.$store.getters['footer/sortedPosts']
     }
   },
   created () {
-    this.$store.dispatch('home/init')
+    this.$store.dispatch('footer/init')
   }
 }
 </script>
